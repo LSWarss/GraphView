@@ -11,6 +11,8 @@
 		A00B3D6528C6709B006CBC8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B3D6428C6709B006CBC8D /* ContentView.swift */; };
 		A00B3D6728C6709B006CBC8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00B3D6628C6709B006CBC8D /* Assets.xcassets */; };
 		A00B3D6A28C6709B006CBC8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00B3D6928C6709B006CBC8D /* Preview Assets.xcassets */; };
+		A00B3D7128C672A2006CBC8D /* EdgeShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B3D7028C672A2006CBC8D /* EdgeShape.swift */; };
+		A00B3D7328C673A8006CBC8D /* VertexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B3D7228C673A8006CBC8D /* VertexView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		A00B3D6428C6709B006CBC8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A00B3D6628C6709B006CBC8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A00B3D6928C6709B006CBC8D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A00B3D7028C672A2006CBC8D /* EdgeShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeShape.swift; sourceTree = "<group>"; };
+		A00B3D7228C673A8006CBC8D /* VertexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +56,11 @@
 			isa = PBXGroup;
 			children = (
 				A00B3D6228C6709B006CBC8D /* GraphViewApp.swift */,
+				A00B3D7028C672A2006CBC8D /* EdgeShape.swift */,
 				A00B3D6428C6709B006CBC8D /* ContentView.swift */,
 				A00B3D6628C6709B006CBC8D /* Assets.xcassets */,
 				A00B3D6828C6709B006CBC8D /* Preview Content */,
+				A00B3D7228C673A8006CBC8D /* VertexView.swift */,
 			);
 			path = GraphView;
 			sourceTree = "<group>";
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A00B3D7328C673A8006CBC8D /* VertexView.swift in Sources */,
+				A00B3D7128C672A2006CBC8D /* EdgeShape.swift in Sources */,
 				A00B3D6528C6709B006CBC8D /* ContentView.swift in Sources */,
 				A00B3D6328C6709B006CBC8D /* GraphViewApp.swift in Sources */,
 			);
