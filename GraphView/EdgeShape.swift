@@ -9,13 +9,13 @@ import SwiftUI
 
 struct Edge: Shape {
     
-    let start: CGPoint
-    let end: CGPoint
+    let start: Vertex
+    let end: Vertex
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        path.move(to: start)
-        path.addLine(to: end)
+        path.move(to: start.coordinates)
+        path.addLine(to: end.coordinates)
         return path
     }
 }

@@ -7,10 +7,20 @@
 
 import SwiftUI
 
+struct Vertex: Identifiable {
+    var coordinates: CGPoint
+    let id = UUID()
+    var isBeingMoved = false
+    var color: Color = .black
+    var radius: Double = 20
+}
+
 struct ContentView: View {
-    @State var vertices = [CGPoint(x: 40, y: 50), CGPoint(x: 320, y: 50), CGPoint(x: 160, y: 300), CGPoint(x: 160, y: 320)]
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State var degrees = 0.0
+    @State var vertices = [Vertex(coordinates: CGPoint(x: 40, y: 50), color: .blue),
+                           Vertex(coordinates: CGPoint(x: 320, y: 50), color: .orange),
+                           Vertex(coordinates: CGPoint(x: 160, y: 300), color: .yellow),
+                           Vertex(coordinates: CGPoint(x: 160, y: 400), color: .indigo),
+    Vertex(coordinates: CGPoint(x: 200, y: 500))]
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -22,55 +32,56 @@ struct ContentView: View {
             
       
             Edge(start: vertices[0], end: vertices[1])
-                .stroke()
+                .stroke(.blue)
             Edge(start: vertices[0], end: vertices[2])
-                .stroke()
+                .stroke(.blue)
             Edge(start: vertices[1], end: vertices[2])
-                .stroke()
+                .stroke(.blue)
             Edge(start: vertices[2], end: vertices[3])
-                .stroke()
+                .stroke(.blue)
+            Edge(start: vertices[3], end: vertices[4])
+                .stroke(.blue)
             
-            VertexView(radius: 20,
-                       color: .black,
-                       coordinate: vertices[0])
-            .gesture(DragGesture()
-                .onChanged { value in
-                    vertices[0] = value.location
-                }
-            )
-            
-            VertexView(radius: 20,
-                       color: .orange,
-                       coordinate: vertices[1])
-            .gesture(DragGesture()
-                .onChanged { value in
-                    vertices[1] = value.location
-                }
-            )
-            
-            VertexView(radius: 20,
-                       color: .blue,
-                       coordinate: vertices[2])
-            .gesture(DragGesture()
-                .onChanged { value in
-                    vertices[2] = value.location
-                }
-            )
-            
-            VertexView(radius: 30,
-                       color: .pink,
-                       coordinate: vertices[3])
-            .gesture(DragGesture()
-                .onChanged { value in
-                    vertices[3] = value.location
-                }
-            )
+            verticesView
         }
-        .rotationEffect(Angle(degrees: degrees))
-        .onReceive(timer) { input in
-            withAnimation {
-                degrees += 10
-            }
+    }
+    
+    var verticesView: some View {
+        ZStack {
+            VertexView(vertex: $vertices[0])
+                .gesture(DragGesture()
+                    .onChanged { value in
+                        vertices[0].coordinates = value.location
+                    }
+                )
+            
+            VertexView(vertex: $vertices[1])
+                .gesture(DragGesture()
+                    .onChanged { value in
+                        vertices[1].coordinates = value.location
+                    }
+                )
+            
+            VertexView(vertex: $vertices[2])
+                .gesture(DragGesture()
+                    .onChanged { value in
+                        vertices[2].coordinates = value.location
+                    }
+                )
+            
+            VertexView(vertex: $vertices[3])
+                .gesture(DragGesture()
+                    .onChanged { value in
+                        vertices[3].coordinates = value.location
+                    }
+                )
+            
+            VertexView(vertex: $vertices[4])
+                .gesture(DragGesture()
+                    .onChanged { value in
+                        vertices[4].coordinates = value.location
+                    }
+                )
         }
     }
 }

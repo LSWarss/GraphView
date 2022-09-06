@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct VertexView: View {
-    var radius: Double
-    var color: Color
-    var coordinate: CGPoint
+    @Binding var vertex: Vertex
     
     var body: some View {
         Circle()
-            .fill(color)
-            .frame(width: radius * 2, height: radius * 2, alignment: .center)
-            .offset(x: coordinate.x - radius, y: coordinate.y - radius)
+            .fill(vertex.color)
+            .frame(width: vertex.radius * 2, height: vertex.radius * 2, alignment: .center)
+            .offset(x: vertex.coordinates.x - vertex.radius, y: vertex.coordinates.y - vertex.radius)
     }
 }
 
