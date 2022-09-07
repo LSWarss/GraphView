@@ -7,15 +7,21 @@
 
 import SwiftUI
 
-struct Edge: Shape {
+typealias Coordinates = CGPoint
+
+struct Edge {
+    let start: Coordinates
+    let end: Coordinates
+}
+
+struct EdgeShape: Shape {
     
-    let start: Vertex
-    let end: Vertex
+    let edge: Edge
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        path.move(to: start.coordinates)
-        path.addLine(to: end.coordinates)
+        path.move(to: edge.start)
+        path.addLine(to: edge.end)
         return path
     }
 }

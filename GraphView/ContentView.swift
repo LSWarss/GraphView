@@ -20,68 +20,51 @@ struct ContentView: View {
                            Vertex(coordinates: CGPoint(x: 320, y: 50), color: .orange),
                            Vertex(coordinates: CGPoint(x: 160, y: 300), color: .yellow),
                            Vertex(coordinates: CGPoint(x: 160, y: 400), color: .indigo),
-    Vertex(coordinates: CGPoint(x: 200, y: 500))]
+                           Vertex(coordinates: CGPoint(x: 200, y: 500), color: .pink)]
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            Rectangle()
-                .fill(.white)
-                .onTapGesture { location in
-                    print(location)
-                }
             
-      
-            Edge(start: vertices[0], end: vertices[1])
-                .stroke(.blue)
-            Edge(start: vertices[0], end: vertices[2])
-                .stroke(.blue)
-            Edge(start: vertices[1], end: vertices[2])
-                .stroke(.blue)
-            Edge(start: vertices[2], end: vertices[3])
-                .stroke(.blue)
-            Edge(start: vertices[3], end: vertices[4])
-                .stroke(.blue)
+            EdgeShape(edge: Edge(start: vertices[0].coordinates,
+                                 end: vertices[1].coordinates))
+            .stroke()
             
+            EdgeShape(edge: Edge(start: vertices[0].coordinates,
+                                 end: vertices[2].coordinates))
+            .stroke()
+            
+            EdgeShape(edge: Edge(start: vertices[1].coordinates,
+                                 end: vertices[2].coordinates))
+            .stroke()
+            
+            EdgeShape(edge: Edge(start: vertices[2].coordinates,
+                                 end: vertices[3].coordinates))
+            .stroke()
+            
+            EdgeShape(edge: Edge(start: vertices[3].coordinates,
+                                 end: vertices[4].coordinates))
+            .stroke()
             verticesView
         }
     }
     
     var verticesView: some View {
         ZStack {
-            VertexView(vertex: $vertices[0])
-                .gesture(DragGesture()
-                    .onChanged { value in
-                        vertices[0].coordinates = value.location
-                    }
-                )
-            
-            VertexView(vertex: $vertices[1])
-                .gesture(DragGesture()
-                    .onChanged { value in
-                        vertices[1].coordinates = value.location
-                    }
-                )
-            
-            VertexView(vertex: $vertices[2])
-                .gesture(DragGesture()
-                    .onChanged { value in
-                        vertices[2].coordinates = value.location
-                    }
-                )
-            
-            VertexView(vertex: $vertices[3])
-                .gesture(DragGesture()
-                    .onChanged { value in
-                        vertices[3].coordinates = value.location
-                    }
-                )
-            
-            VertexView(vertex: $vertices[4])
-                .gesture(DragGesture()
-                    .onChanged { value in
-                        vertices[4].coordinates = value.location
-                    }
-                )
+            ForEach(Array(zip(vertices.indices, $vertices)), id: \.0) { index, vertex in
+                VertexView(vertex: vertex)
+                    .gesture(DragGesture()
+                        .onChanged { value in
+                            vertices[index].isBeingMoved = true
+                            vertices[index].coordinates = value.location
+                        }
+                        .onEnded { _ in
+                            withAnimation {
+                                vertices[index].isBeingMoved = false
+                                HapticFeedbackManager.shared.triggerImpact(.light)
+                            }
+                        }
+                    )
+            }
         }
     }
 }

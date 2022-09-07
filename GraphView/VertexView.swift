@@ -12,7 +12,7 @@ struct VertexView: View {
     
     var body: some View {
         Circle()
-            .fill(vertex.color)
+            .fill(vertex.isBeingMoved ? .red : vertex.color)
             .frame(width: vertex.radius * 2, height: vertex.radius * 2, alignment: .center)
             .offset(x: vertex.coordinates.x - vertex.radius, y: vertex.coordinates.y - vertex.radius)
     }
